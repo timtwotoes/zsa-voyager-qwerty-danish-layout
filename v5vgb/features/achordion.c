@@ -355,8 +355,8 @@ __attribute__((weak)) uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
 // Make home row mods eager
 __attribute__((weak)) bool achordion_eager_mod(uint8_t mod) {
   switch (mod) {
-     case MOD_LSHFT:
-     case MOD_RSHFT:
+     case MOD_LSFT:
+     case MOD_RSFT:
      case MOD_LCTL:
      case MOD_RCTL:
      case MOD_LALT:
