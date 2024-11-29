@@ -57,6 +57,8 @@
 extern "C" {
 #endif
 
+#define ACHORDION_STREAK
+
 /**
  * Handler function for Achordion.
  *
