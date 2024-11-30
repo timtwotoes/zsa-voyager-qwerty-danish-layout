@@ -154,7 +154,7 @@ void matrix_scan_user(void) {
 // Achordion End
 
 // Key Overrides Begin
-const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, LT(1,KC_DELETE), LT(2,KC_BSPC));
+const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, LT(1,KC_BSPC), KC_DELETE);
 
 const key_override_t **key_overrides = (const key_override_t *[]) {
   &delete_key_override,
