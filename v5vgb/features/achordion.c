@@ -409,7 +409,7 @@ achordion_streak_timeout(uint16_t tap_hold_keycode) {
   case KC_J:
   case KC_K:
   case KC_L:
-  case DK_AE:
+  case KC_SCLN:
     return 250;
   default:
     return 200;
