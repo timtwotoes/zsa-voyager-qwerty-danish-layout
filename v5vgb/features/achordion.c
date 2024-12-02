@@ -397,7 +397,23 @@ __attribute__((weak)) uint16_t achordion_streak_chord_timeout(
 
 __attribute__((weak)) uint16_t
 achordion_streak_timeout(uint16_t tap_hold_keycode) {
-  return 200;
+  if (IS_QK_LAYER_TAP(tap_hold_keycode)) {
+    return 0;  // Disable streak detection on layer-tap keys.
+  }
+
+  switch (tap_hold_keycode) {
+  case KC_A:
+  case KC_S:
+  case KC_D:
+  case KC_F:
+  case KC_J:
+  case KC_K:
+  case KC_L:
+  case DK_AE:
+    return 250;
+  default:
+    return 200;
+  }
 }
 #endif
 
