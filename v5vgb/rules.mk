@@ -10,4 +10,4 @@ SPACE_CADET_ENABLE = no
 KEY_OVERRIDE_ENABLE = yes
 
 # Achordion
-SRC += features/achordion.c
+#SRC += features/achordion.c
