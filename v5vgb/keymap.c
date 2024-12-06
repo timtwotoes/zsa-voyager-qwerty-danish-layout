@@ -30,7 +30,7 @@ enum custom_keycodes {
 };
 
 #ifdef SMTD
-#incude "sm_td.h"
+#include "sm_td.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
