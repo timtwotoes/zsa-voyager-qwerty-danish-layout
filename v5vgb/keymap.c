@@ -200,7 +200,7 @@ void matrix_scan_user(void) {
 #endif
 
 #ifdef SMTD
-void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) { }
+void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
     switch (keycode) {
         SMTD_MT(CKC_A, KC_A, MOD_LGUI)
         SMTD_MT(CKC_S, KC_S, MOD_LALT)
