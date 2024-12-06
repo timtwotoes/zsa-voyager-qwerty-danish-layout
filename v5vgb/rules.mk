@@ -9,5 +9,8 @@ SPACE_CADET_ENABLE = no
 
 KEY_OVERRIDE_ENABLE = yes
 
+# Awesome bilateral combinations
+DEFFERED_EXEC_ENABLE = yes
+
 # Achordion
 #SRC += features/achordion.c

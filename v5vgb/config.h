@@ -14,5 +14,15 @@
 #define TAPPING_TERM_PER_KEY
 #define RGB_MATRIX_STARTUP_SPD 60
 
-//#define ACHORDION_STREAK
+#define SMTD
 //#define ACHORDION
+
+
+#ifdef SMTD
+#define MAX_DEFERRED_EXECUTORS 10
+#endif
+
+
+#ifdef ACHORDION
+#define ACHORDION_STREAK
+#endif
