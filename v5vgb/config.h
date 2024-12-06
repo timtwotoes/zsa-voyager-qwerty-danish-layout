@@ -8,7 +8,7 @@
 #define USB_SUSPEND_WAKEUP_DELAY 0
 #define CAPS_LOCK_STATUS
 #define HOLD_ON_OTHER_KEY_PRESS
-#define SERIAL_NUMBER "v5vgb/mB9ej"
+#define SERIAL_NUMBER "v5vgb/yeG3P"
 #define LAYER_STATE_8BIT
 
 #define TAPPING_TERM_PER_KEY
