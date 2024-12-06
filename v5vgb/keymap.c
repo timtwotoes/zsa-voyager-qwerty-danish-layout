@@ -210,7 +210,6 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
         SMTD_MT(CKC_K, KC_K, KC_RCTL)
         SMTD_MT(CKC_L, KC_L, KC_RALT)
         SMTD_MT(CKC_AE, DK_AE, KC_RGUI)
-        SMTD_MT(CKC_A, KC_A, KC_A, 2)
     }
 }
 #endif
