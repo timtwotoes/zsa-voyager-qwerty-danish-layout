@@ -20,6 +20,7 @@
 
 #ifdef SMTD
 #define MAX_DEFERRED_EXECUTORS 10
+#define SMTD_GLOBAL_SEQUENCE_TERM 200
 #endif
 
 
