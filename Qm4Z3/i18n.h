@@ -1,0 +1,14 @@
+#define DK_DIAE KC_RBRC
+#define DK_PLUS KC_MINS
+#define DK_LABK KC_NUBS
+#define DK_ACUT KC_EQL
+#define DK_ARNG KC_LBRC
+#define DK_AE KC_SCLN
+#define DK_OSTR KC_QUOT
+#define DK_MINS KC_SLSH
+#define DK_QUOT KC_NUHS
+#define DK_LPRN S(KC_8)
+#define DK_LBRC ALGR(KC_8)
+#define DK_RBRC ALGR(KC_9)
+#define DK_RPRN S(KC_9)
+#define DK_RABK S(KC_NUBS)
