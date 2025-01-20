@@ -1,4 +1,4 @@
-name: Fetch and build layout
+name: Fetch and build Collum layout
 
 on:
   workflow_dispatch:
