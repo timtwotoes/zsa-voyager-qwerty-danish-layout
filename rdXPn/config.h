@@ -16,3 +16,4 @@
 
 #define RGB_MATRIX_STARTUP_SPD 60
 
+#define CHORDAL_HOLD
