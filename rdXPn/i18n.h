@@ -7,8 +7,8 @@
 #define DK_OSTR KC_QUOT
 #define DK_MINS KC_SLSH
 #define DK_QUOT KC_NUHS
+#define DK_RABK S(KC_NUBS)
 #define DK_LPRN S(KC_8)
 #define DK_LBRC ALGR(KC_8)
 #define DK_RBRC ALGR(KC_9)
 #define DK_RPRN S(KC_9)
-#define DK_RABK S(KC_NUBS)
