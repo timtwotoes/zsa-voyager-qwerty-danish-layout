@@ -5,7 +5,6 @@
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
 #endif
-#include "keymap_danish.h"
 
 enum custom_keycodes {
   RGB_SLD = ZSA_SAFE_RANGE,
