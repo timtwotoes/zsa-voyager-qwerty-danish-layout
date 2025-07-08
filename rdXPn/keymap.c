@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
+#include "voyager.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -160,4 +161,13 @@ bool caps_word_press_user(uint16_t keycode) {
     default:
       return false;  // Deactivate Caps Word.
   }
+}
+
+void keyboard_post_init_user(void) {
+  keyboard_config.led_level = false;
+}
+
+void caps_word_set_user(bool active) {
+  ML_LED_3(active);
+  ML_LED_4(active);
 }
