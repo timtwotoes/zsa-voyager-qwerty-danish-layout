@@ -144,7 +144,7 @@ bool caps_word_press_user(uint16_t keycode) {
   switch (keycode) {
     // Keycodes that continue Caps Word, with shift applied.
     case KC_A ... KC_Z:
-    case DK_MINS:
+    case DK_MINS: // This is dash but shifted which is underscore
       add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
       return true;
 
@@ -152,7 +152,7 @@ bool caps_word_press_user(uint16_t keycode) {
     case KC_1 ... KC_0:
     case KC_BSPC:
     case KC_DEL:
-    case DK_UNDS:
+    case KC_SLSH: // This is the same as DK_MINS or dash
       return true;
 
     default:
