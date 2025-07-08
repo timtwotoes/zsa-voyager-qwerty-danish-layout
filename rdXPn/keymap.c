@@ -139,3 +139,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
   NULL
 };
 
+// Control LED
+void caps_word_set_user(bool active) {
+  ML_LED_4(active);
+}
