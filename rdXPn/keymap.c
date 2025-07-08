@@ -143,8 +143,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 bool caps_word_press_user(uint16_t keycode) {
   switch (keycode) {
     // Keycodes that continue Caps Word, with shift applied.
-    case KC_A ... KC_Z:
-    case DK_MINS: // This is dash but shifted which is underscore
+    case DK_A ... DK_AA:
       add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
       return true;
 
@@ -152,6 +151,7 @@ bool caps_word_press_user(uint16_t keycode) {
     case KC_1 ... KC_0:
     case KC_BSPC:
     case KC_DEL:
+    case DK_MINS: // This is dash
       return true;
 
     default:
