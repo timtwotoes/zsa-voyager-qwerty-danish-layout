@@ -15,3 +15,5 @@
 #define CHORDAL_HOLD
 
 #define CAPS_WORD_INVERT_ON_SHIFT
+
+#define VOYAGER_USER_LEDS
