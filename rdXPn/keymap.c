@@ -146,7 +146,7 @@ bool caps_word_press_user(uint16_t keycode) {
     case KC_A ... KC_Z:
     case DK_AE: // æ
     case DK_OSTR: // ø
-    case DK_ARNG // å
+    case DK_ARNG: // å
       add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
       return true;
 
