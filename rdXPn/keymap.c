@@ -163,11 +163,7 @@ bool caps_word_press_user(uint16_t keycode) {
   }
 }
 
-void keyboard_post_init_user(void) {
-  keyboard_config.led_level = false;
-}
-
 void caps_word_set_user(bool active) {
-  ML_LED_3(active);
-  ML_LED_4(active);
+  STATUS_LED_3(active);
+  STATUS_LED_4(active);
 }
