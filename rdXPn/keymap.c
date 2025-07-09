@@ -144,52 +144,6 @@ bool rgb_matrix_indicators_user(void) {
   return true;
 }
 
-bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
-    if (!process_record_user(keycode, record)) {
-        return false;
-    }
-    switch (keycode) {
-#if !defined(VOYAGER_USER_LEDS)
-        case LED_LEVEL:
-            if (record->event.pressed) {
-                keyboard_config.led_level ^= 1;
-                eeconfig_update_kb(keyboard_config.raw);
-                if (keyboard_config.led_level) {
-                    layer_state_set_kb(layer_state);
-                } else {
-                    STATUS_LED_1(false);
-                    STATUS_LED_2(false);
-                    STATUS_LED_3(false);
-                    STATUS_LED_4(false);
-                }
-            }
-            break;
-#endif
-#ifdef RGB_MATRIX_ENABLE
-        case TOGGLE_LAYER_COLOR:
-            if (record->event.pressed) {
-                keyboard_config.disable_layer_led ^= 1;
-                if (keyboard_config.disable_layer_led) rgb_matrix_set_color_all(0, 0, 0);
-            }
-            break;
-        case RGB_TOG:
-            if (record->event.pressed) {
-                switch (rgb_matrix_get_flags()) {
-                    case LED_FLAG_ALL: {
-                        rgb_matrix_set_flags(LED_FLAG_NONE);
-                        rgb_matrix_set_color_all(0, 0, 0);
-                    } break;
-                    default: {
-                        rgb_matrix_set_flags(LED_FLAG_ALL);
-                    } break;
-                }
-            }
-            return false;
-#endif
-    }
-    return true;
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 
