@@ -149,7 +149,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_ESC:
         if (is_caps_word_on()) {
-            return true;
+            caps_word_off();
+            return false;
         }
 
 #ifdef USER_VOYAGER_LEDS
