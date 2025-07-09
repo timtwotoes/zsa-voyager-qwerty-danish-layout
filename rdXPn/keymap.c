@@ -54,6 +54,25 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 // Possible LED states.
 enum { LED_OFF = 0, LED_ON = 1, LED_BLINK_SLOW = 2, LED_BLINK_FAST = 3 };
 static uint8_t led_blink_state[NUM_LEDS] = {0};
+
+// Track caps lock
+static bool is_caps_lock_on = false;
+
+static void update_caps_indicator(void) {
+    if (is_caps_lock_on) {
+        led_blink_state[3] = LED_ON;
+    } else if (is_caps_word_on()) {
+        led_blink_state[3] = LED_BLINK_FAST;
+    } else {
+        led_blink_state[3] = LED_OFF;
+    }
+}
+
+bool led_update_user(led_t led_state) {
+    is_caps_lock_on = led_state.caps_lock;
+    update_caps_indicator();
+    return true;
+}
 #endif
 
 extern rgb_config_t rgb_matrix_config;
@@ -204,6 +223,10 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 #ifdef VOYAGER_USER_LEDS
+void caps_word_set_user(bool active) {
+    update_caps_indicator();
+}
+
 layer_state_t layer_state_set_user(layer_state_t state) {
     uint8_t layer = get_highest_layer(state);
 
