@@ -162,7 +162,22 @@ bool caps_word_press_user(uint16_t keycode) {
   }
 }
 
-void caps_word_set_user(bool active) {
-  STATUS_LED_3(active);
-  STATUS_LED_4(active);
+#ifdef VOYAGER_USER_LED
+layer_state_t layer_state_set_kb(layer_state_t state) {
+    state = layer_state_set_user(state);
+    if (is_launching || !keyboard_config.led_level) return state;
+#ifdef ORYX_ENABLE
+    if (rawhid_state.status_led_control) return state;
+#endif
+    uint8_t layer = get_highest_layer(state);
+
+    STATUS_LED_1(layer & (1<<0));
+    STATUS_LED_2(layer & (1<<1));
+    STATUS_LED_3(layer & (1<<2));
+
+#    if !defined(CAPS_LOCK_STATUS)
+    STATUS_LED_4(layer & (1<<3));
+#    endif
+    return state;
 }
+#endif
