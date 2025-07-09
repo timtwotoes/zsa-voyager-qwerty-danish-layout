@@ -180,4 +180,26 @@ layer_state_t layer_state_set_kb(layer_state_t state) {
 #    endif
     return state;
 }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LED_LEVEL:
+            if (record->event.pressed) {
+                keyboard_config.led_level ^= 1;
+                eeconfig_update_kb(keyboard_config.raw);
+                if (keyboard_config.led_level) {
+                    layer_state_set_kb(layer_state);
+                } else {
+                    STATUS_LED_1(false);
+                    STATUS_LED_2(false);
+                    STATUS_LED_3(false);
+                    STATUS_LED_4(false);
+                }
+            }
+            break;
+    }
+    return true;
+}
 #endif
+
+
