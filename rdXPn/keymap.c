@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
-#include "voyager.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -164,12 +163,7 @@ bool caps_word_press_user(uint16_t keycode) {
 }
 
 #ifdef VOYAGER_USER_LEDS
-layer_state_t layer_state_set_kb(layer_state_t state) {
-    state = layer_state_set_user(state);
-    if (is_launching || !keyboard_config.led_level) return state;
-#ifdef ORYX_ENABLE
-    if (rawhid_state.status_led_control) return state;
-#endif
+layer_state_t layer_state_set_user(layer_state_t state) {
     uint8_t layer = get_highest_layer(state);
 
     STATUS_LED_1(layer & (1<<0));
