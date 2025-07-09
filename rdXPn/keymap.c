@@ -162,7 +162,7 @@ bool caps_word_press_user(uint16_t keycode) {
   }
 }
 
-#ifdef VOYAGER_USER_LED
+#ifdef VOYAGER_USER_LEDS
 layer_state_t layer_state_set_kb(layer_state_t state) {
     state = layer_state_set_user(state);
     if (is_launching || !keyboard_config.led_level) return state;
