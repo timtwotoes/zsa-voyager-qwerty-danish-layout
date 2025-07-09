@@ -45,6 +45,8 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
+static bool should_consume_escape_key = false;
+
 #ifdef VOYAGER_USER_LEDS
 // Number of LEDs on the keyboard.
 #define NUM_LEDS  4
@@ -148,8 +150,8 @@ bool rgb_matrix_indicators_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_ESC:
-        if (is_caps_word_on()) {
-            caps_word_off();
+        if (should_consume_escape_key) {
+            should_consume_escape_key = false;
             return false;
         }
         return true;
@@ -223,6 +225,8 @@ bool caps_word_press_user(uint16_t keycode) {
     case DK_MINS: // This is dash
       return true;
 
+    case KC_ESC:
+      should_consume_escape_key = true;
     default:
       return false;  // Deactivate Caps Word.
   }
