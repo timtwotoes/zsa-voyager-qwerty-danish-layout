@@ -221,7 +221,6 @@ bool caps_word_press_user(uint16_t keycode) {
     case KC_BSPC:
     case KC_DEL:
     case DK_MINS: // This is dash
-    case KC_ESC: // Allow escape - process_record_user will catch it and disable caps word 
       return true;
 
     default:
