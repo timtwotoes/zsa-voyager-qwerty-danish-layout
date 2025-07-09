@@ -200,7 +200,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
-  if (IS_LAYER_ON(2) {
+  if (IS_LAYER_ON(2)) {
      return true;
   }
 
