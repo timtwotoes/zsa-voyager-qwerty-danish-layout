@@ -13,9 +13,6 @@ enum custom_keycodes {
   HSV_169_255_255,
 };
 
-
-
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_voyager(
     DK_DIAE,        KC_1,           KC_2,           KC_3,           KC_4,           KC_5,                                           KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           DK_ACUT,        
@@ -48,7 +45,36 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
+#ifdef VOYAGER_USER_LEDS
+// Number of LEDs on the keyboard.
+#define NUM_LEDS  4
+// Period for LED_BLINK_FAST blinking. Smaller value implies faster.
+#define LED_BLINK_FAST_PERIOD_MS  300
 
+// Possible LED states.
+enum { LED_OFF = 0, LED_ON = 1, LED_BLINK_SLOW = 2, LED_BLINK_FAST = 3 };
+static uint8_t led_blink_state[NUM_LEDS] = {0};
+
+void keyboard_post_init_user(void) {
+
+  uint32_t led_blink_callback(uint32_t trigger_time, void* cb_arg) {
+    static const uint8_t pattern[4] = {0x00, 0xff, 0x0f, 0xaa};
+    static uint8_t phase = 0;
+    phase = (phase + 1) % 8;
+
+    uint8_t bit = 1 << phase;
+
+    STATUS_LED_1((pattern[led_blink_state[0]] & bit) != 0);
+    STATUS_LED_2((pattern[led_blink_state[1]] & bit) != 0);
+    STATUS_LED_3((pattern[led_blink_state[2]] & bit) != 0);
+    STATUS_LED_4((pattern[led_blink_state[3]] & bit) != 0);
+    
+    return LED_BLINK_FAST_PERIOD_MS / 2;
+  }
+
+  defer_exec(1, led_blink_callback, NULL);
+}
+#endif
 
 extern rgb_config_t rgb_matrix_config;
 
@@ -192,5 +218,4 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     return state;
 }
 #endif
-
 
