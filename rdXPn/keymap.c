@@ -104,6 +104,22 @@ bool rgb_matrix_indicators_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
 
+#ifdef USER_VOYAGER_LEDS
+    case LED_LEVEL:
+        if (record->event.pressed) {
+            keyboard_config.led_level ^= 1;
+            eeconfig_update_kb(keyboard_config.raw);
+            if (keyboard_config.led_level) {
+                layer_state_set_kb(layer_state);
+            } else {
+                STATUS_LED_1(false);
+                STATUS_LED_2(false);
+                STATUS_LED_3(false);
+                STATUS_LED_4(false);
+            }
+        }
+        return true;
+#endif
     case RGB_SLD:
       if (record->event.pressed) {
         rgblight_mode(1);
@@ -174,26 +190,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     STATUS_LED_4(layer & (1<<3));
 #    endif
     return state;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case LED_LEVEL:
-            if (record->event.pressed) {
-                keyboard_config.led_level ^= 1;
-                eeconfig_update_kb(keyboard_config.raw);
-                if (keyboard_config.led_level) {
-                    layer_state_set_kb(layer_state);
-                } else {
-                    STATUS_LED_1(false);
-                    STATUS_LED_2(false);
-                    STATUS_LED_3(false);
-                    STATUS_LED_4(false);
-                }
-            }
-            break;
-    }
-    return true;
 }
 #endif
 
