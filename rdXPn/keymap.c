@@ -54,9 +54,14 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
 // Possible LED states.
 enum { LED_OFF = 0, LED_ON = 1, LED_BLINK_SLOW = 2, LED_BLINK_FAST = 3 };
 static uint8_t led_blink_state[NUM_LEDS] = {0};
+#endif
+
+extern rgb_config_t rgb_matrix_config;
 
 void keyboard_post_init_user(void) {
+  rgb_matrix_enable();
 
+#ifdef VOYAGER_USER_LEDS
   uint32_t led_blink_callback(uint32_t trigger_time, void* cb_arg) {
     static const uint8_t pattern[4] = {0x00, 0xff, 0x0f, 0xaa};
     static uint8_t phase = 0;
@@ -73,13 +78,7 @@ void keyboard_post_init_user(void) {
   }
 
   defer_exec(1, led_blink_callback, NULL);
-}
 #endif
-
-extern rgb_config_t rgb_matrix_config;
-
-void keyboard_post_init_user(void) {
-  rgb_matrix_enable();
 }
 
 const uint8_t PROGMEM ledmap[][RGB_MATRIX_LED_COUNT][3] = {
