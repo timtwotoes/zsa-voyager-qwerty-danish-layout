@@ -289,9 +289,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 //    STATUS_LED_1(layer & (1<<0));
 //    STATUS_LED_2(layer & (1<<1));
 //    STATUS_LED_3(layer & (1<<2));
-    led_blink_state[0] = (layer & (1<<0)) ? LED_ON : LED_OFF;
-    led_blink_state[1] = (layer & (1<<1)) ? LED_ON : LED_OFF;
-    led_blink_state[2] = (layer & (1<<2)) ? LED_ON : LED_OFF;
+    led_blink_state[0] = (layer & (1<<0)) ? LED_ON : LED_OFF
+    led_blink_state[1] = (layer & (1<<1)) ? LED_ON : LED_OFF
+    led_blink_state[2] = (layer & (1<<2)) ? LED_ON : LED_OFF
 #   if !defined(CAPS_LOCK_STATUS)
 //    STATUS_LED_4(layer & (1<<3));
     update_caps_indicator();
