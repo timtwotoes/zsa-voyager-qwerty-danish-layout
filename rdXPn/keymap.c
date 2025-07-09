@@ -13,7 +13,7 @@ enum custom_keycodes {
   HSV_169_255_255,
 };
 
-enum custom_keycodes {
+enum thumb_keycodes {
   KC_LTHUMB = SAFE_RANGE,
   KC_RTHUMB = SAFE_RANGE+1
 }
