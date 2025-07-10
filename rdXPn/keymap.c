@@ -45,8 +45,6 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
-static bool is_shift_held = false;
-
 #ifdef VOYAGER_USER_LEDS
 // Number of LEDs on the keyboard.
 #define NUM_LEDS  4
