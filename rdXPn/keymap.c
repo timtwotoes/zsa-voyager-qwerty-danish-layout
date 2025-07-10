@@ -155,10 +155,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (keyboard_config.led_level) {
                 layer_state_set_kb(layer_state);
             } else {
-                STATUS_LED_1(false);
-                STATUS_LED_2(false);
-                STATUS_LED_3(false);
-                STATUS_LED_4(false);
+                led_blink_state[0] = LED_OFF;
+                led_blink_state[1] = LED_OFF;
+                led_blink_state[2] = LED_OFF;
+                led_blink_state[3] = LED_OFF;
             }
         }
         return true;
