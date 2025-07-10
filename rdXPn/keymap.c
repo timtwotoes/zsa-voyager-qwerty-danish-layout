@@ -146,6 +146,14 @@ bool rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
+    case LT(2, KC_ESCAPE):
+        if (is_caps_word_on()) {
+            if (!record->event.pressed) {
+                caps_word_off();
+            }
+            return false;
+        }
+        return true;
 
 #ifdef USER_VOYAGER_LEDS
     case LED_LEVEL:
