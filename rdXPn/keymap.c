@@ -216,7 +216,10 @@ bool caps_word_press_user(uint16_t keycode) {
     case DK_AE: // æ
     case DK_OSTR: // ø
     case DK_ARNG: // å
-      add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
+    case DK_MINS: // This is minus and dash
+      if (shift_is_held == false) {
+        add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
+      }
       return true;
 
     case KC_1 ... KC_0:
@@ -226,7 +229,6 @@ bool caps_word_press_user(uint16_t keycode) {
     case KC_RSFT:
     case KC_BSPC:
     case KC_DEL:
-    case DK_MINS: // This is dash
     case KC_RIGHT:
     case KC_LEFT:
       return true;
