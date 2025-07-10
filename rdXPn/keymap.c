@@ -208,17 +208,20 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
+  const bool is_shift_enabled = (get_mods() & MOD_MASK_SHIFT);
+
   switch (keycode) {
-    // Keycodes that continue Caps Word, with shift applied.
+    // Keycodes that continue Caps Word
     case KC_A ... KC_Z:
     case DK_AE: // æ
     case DK_OSTR: // ø
     case DK_ARNG: // å
-//      add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-//      return true;
+      add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
+      return true;
 
-    // Keycodes that continue Caps Word, without shifting.
     case KC_1 ... KC_0:
+      return is_shift_enabled == false; // Only allow numbers
+     
     case KC_BSPC:
     case KC_DEL:
     case DK_MINS: // This is dash
