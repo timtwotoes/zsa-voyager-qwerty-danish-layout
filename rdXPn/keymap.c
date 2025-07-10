@@ -218,9 +218,8 @@ bool caps_word_press_user(uint16_t keycode) {
       return true;
 
     case KC_1 ... KC_0:
-      return (get_mods() == MOD_BIT(KC_LSFT)) == false;
-
     case KC_BSPC:
+    case LT(1, KC_BSPC):
     case KC_DEL:
     case DK_MINS: // This is dash
     case KC_RIGHT:
