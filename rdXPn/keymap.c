@@ -45,6 +45,8 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM = LAYOUT(
   '*', '*', '*', '*'
 );
 
+static bool is_shift_held = false;
+
 #ifdef VOYAGER_USER_LEDS
 // Number of LEDs on the keyboard.
 #define NUM_LEDS  4
@@ -208,9 +210,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
-  const bool is_shift_enabled = (get_mods() & MOD_MASK_SHIFT);
-
-  switch (keycode) {
+  switch (keycode) {  
     // Keycodes that continue Caps Word
     case KC_A ... KC_Z:
     case DK_AE: // æ
@@ -220,11 +220,13 @@ bool caps_word_press_user(uint16_t keycode) {
       return true;
 
     case KC_1 ... KC_0:
-      return is_shift_enabled == false; // Only allow numbers
-     
+      return (get_mods() == MOD_BIT(KC_LSHFT)) == false;
+
     case KC_BSPC:
     case KC_DEL:
     case DK_MINS: // This is dash
+    case KC_RIGHT:
+    case KC_LEFT:
       return true;
 
     default:
