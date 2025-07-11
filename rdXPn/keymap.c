@@ -1,6 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
+#include "print.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -208,6 +209,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
+#ifdef CONSOLE_ENABLE
   if (get_weak_mods() & MOD_BIT(KC_LSFT)) {
     print("WEAK KC_LSFT = TRUE");
   } else {
@@ -228,6 +230,7 @@ bool caps_word_press_user(uint16_t keycode) {
   } else {
     print("KC_RSFT = FALSE");
   }
+#endif
   switch (keycode) {  
     // Keycodes that continue Caps Word
     case KC_A ... KC_Z:
