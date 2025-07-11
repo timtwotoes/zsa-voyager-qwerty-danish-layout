@@ -229,6 +229,11 @@ bool caps_word_press_user(uint16_t keycode) {
   } else {
     print("KC_RSFT = FALSE\n");
   }
+  if (get_mods() & MOD_MASK_SHIFT) {
+    print("SHIFT = TRUE\n");
+  } else {
+    print("SHIFT = FALSE\n");
+  }
 #endif
   switch (keycode) {  
     // Keycodes that continue Caps Word
