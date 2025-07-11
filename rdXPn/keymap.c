@@ -208,8 +208,6 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
-  const bool shift_is_held = (get_mods() & MOD_MASK_SHIFT);
-
   switch (keycode) {  
     // Keycodes that continue Caps Word
     case KC_A ... KC_Z:
@@ -221,10 +219,6 @@ bool caps_word_press_user(uint16_t keycode) {
       return true;
 
     case KC_1 ... KC_0:
-      return shift_is_held == false;
-
-    case KC_LSFT:
-    case KC_RSFT:
     case KC_BSPC:
     case KC_DEL:
     case KC_RIGHT:
