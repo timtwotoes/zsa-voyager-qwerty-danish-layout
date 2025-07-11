@@ -208,7 +208,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
-  const bool shift_is_held = (get_mods() & MOD_MASK_SHIFT);
+  const bool shift_is_held = (get_weak_mods() & MOD_MASK_SHIFT);
 
   switch (keycode) {  
     // Keycodes that continue Caps Word
@@ -217,11 +217,7 @@ bool caps_word_press_user(uint16_t keycode) {
     case DK_OSTR: // ø
     case DK_ARNG: // å
     case DK_MINS: // This is minus and dash
-      if (shift_is_held) {
-        unregister_weak_mods(MOD_MASK_SHIFT);
-      } else {
-        add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-      }
+      add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
       return true;
 
     case KC_1 ... KC_0:
