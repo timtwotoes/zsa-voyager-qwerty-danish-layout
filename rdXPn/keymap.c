@@ -146,7 +146,7 @@ bool rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef CONSOLE_ENABLE
-  print("process_record_user");
+  print("process_record_user\n");
 #endif
   switch (keycode) {
     case LT(2, KC_ESCAPE):
@@ -212,7 +212,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 bool caps_word_press_user(uint16_t keycode) {
 #ifdef CONSOLE_ENABLE
-  print("caps_word_press_user");
+  print("caps_word_press_user\n");
 #endif
   const bool shift_pressed = get_mods() & MOD_MASK_SHIFT;
 
