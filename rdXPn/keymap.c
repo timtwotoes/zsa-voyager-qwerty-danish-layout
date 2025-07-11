@@ -149,7 +149,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 //    if (get_mods() & MOD_MASK_SHIFT) {
 //        del_weak_mods(MOD_MASK_SHIFT); // Remove shift from the next key.
 //    } else {
-        add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
+        add_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
 //    }
   }
 
