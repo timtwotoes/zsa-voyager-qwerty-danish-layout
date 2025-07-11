@@ -235,31 +235,53 @@ bool caps_word_press_user(uint16_t keycode) {
     print("SHIFT = FALSE\n");
   }
 #endif
-  switch (keycode) {  
-    // Keycodes that continue Caps Word
-    case KC_A ... KC_Z:
-    case DK_AE: // æ
-    case DK_OSTR: // ø
-    case DK_ARNG: // å
-    case DK_MINS: // This is minus and dash
-      if (!(get_mods() & MOD_MASK_SHIFT)) {
+  if (get_mods() & MOD_MASK_SHIFT) {
+    switch (keycode) {  
+      // Keycodes that continue Caps Word
+      case KC_A ... KC_Z:
+      case DK_AE: // æ
+      case DK_OSTR: // ø
+      case DK_ARNG: // å
+      case DK_MINS: // This is minus and dash
         add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-      }
-      return true;
+        return true;
 
-    case KC_1 ... KC_0:
-      return (get_mods() & MOD_MASK_SHIFT) == false;
+      case KC_1 ... KC_0:
+        return false;
 
-    case KC_BSPC:
-    case KC_DEL:
-    case KC_RIGHT:
-    case KC_LEFT:
-    case KC_LSFT:
-    case KC_RSFT:
-      return true;
+      case KC_BSPC:
+      case KC_DEL:
+      case KC_RIGHT:
+      case KC_LEFT:
+      case KC_LSFT:
+      case KC_RSFT:
+        return true;
 
-    default:
-      return false;  // Deactivate Caps Word.
+      default:
+        return false;  // Deactivate Caps Word.
+    }
+  } else {
+    switch (keycode) {  
+      // Keycodes that continue Caps Word
+      case KC_A ... KC_Z:
+      case DK_AE: // æ
+      case DK_OSTR: // ø
+      case DK_ARNG: // å
+      case DK_MINS: // This is minus and dash
+        return true;
+
+      case KC_1 ... KC_0:
+      case KC_BSPC:
+      case KC_DEL:
+      case KC_RIGHT:
+      case KC_LEFT:
+      case KC_LSFT:
+      case KC_RSFT:
+        return true;
+
+      default:
+        return false;  // Deactivate Caps Word.
+    }
   }
 }
 
