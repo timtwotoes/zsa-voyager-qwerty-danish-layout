@@ -145,14 +145,6 @@ bool rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (is_caps_word_on()) {
-//    if (get_mods() & MOD_MASK_SHIFT) {
-//        del_weak_mods(MOD_MASK_SHIFT); // Remove shift from the next key.
-//    } else {
-        add_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-//    }
-  }
-
   switch (keycode) {
     case LT(2, KC_ESCAPE):
         if (record->tap.count > 0 && is_caps_word_on()) {
@@ -216,9 +208,6 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
-#ifdef CONSOLE_ENABLE
-  print("caps_word_press_user\n");
-#endif
   const bool shift_pressed = get_mods() & MOD_MASK_SHIFT;
 
   switch (keycode) {  
@@ -228,6 +217,7 @@ bool caps_word_press_user(uint16_t keycode) {
     case DK_OSTR: // ø
     case DK_ARNG: // å
     case DK_MINS: // This is minus and dash
+      add_weak_mods(MOD_BITS(KC_LSFT));
       return true;
 
     case KC_1 ... KC_0:
