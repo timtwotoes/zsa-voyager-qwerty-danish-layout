@@ -245,7 +245,7 @@ bool caps_word_press_user(uint16_t keycode) {
 //      if ((get_mods() & MOD_MASK_SHIFT) == false) {
 //        add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
 //      }
-//      return true;
+      return true;
 
     case KC_1 ... KC_0:
       return (get_mods() & MOD_MASK_SHIFT) == false;
