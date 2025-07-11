@@ -146,11 +146,11 @@ bool rgb_matrix_indicators_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (is_caps_word_on()) {
-    if (get_mods() & MOD_MASK_SHIFT) {
-        del_weak_mods(MOD_MASK_SHIFT); // Remove shift from the next key.
-    } else {
+//    if (get_mods() & MOD_MASK_SHIFT) {
+//        del_weak_mods(MOD_MASK_SHIFT); // Remove shift from the next key.
+//    } else {
         add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-    }
+//    }
   }
 
   switch (keycode) {
