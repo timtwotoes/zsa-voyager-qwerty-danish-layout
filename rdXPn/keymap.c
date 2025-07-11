@@ -210,24 +210,24 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 bool caps_word_press_user(uint16_t keycode) {
 #ifdef CONSOLE_ENABLE
   if (get_weak_mods() & MOD_BIT(KC_LSFT)) {
-    dprint("WEAK KC_LSFT = TRUE");
+    dprint("WEAK KC_LSFT = TRUE\n");
   } else {
-    dprint("WEAK KC_LSFT = FALSE");
+    dprint("WEAK KC_LSFT = FALSE\n");
   }
   if (get_weak_mods() & MOD_BIT(KC_RSFT)) {
-    dprint("WEAK KC_RSFT = TRUE");
+    dprint("WEAK KC_RSFT = TRUE\n");
   } else {
-    dprint("WEAK KC_RSFT = FALSE");
+    dprint("WEAK KC_RSFT = FALSE\n");
   }
   if (get_mods() & MOD_BIT(KC_LSFT)) {
-    dprint("KC_LSFT = TRUE");
+    dprint("KC_LSFT = TRUE\n");
   } else {
-    dprint("KC_LSFT = FALSE");
+    dprint("KC_LSFT = FALSE\n");
   }
   if (get_mods() & MOD_BIT(KC_RSFT)) {
-    dprint("KC_RSFT = TRUE");
+    dprint("KC_RSFT = TRUE\n");
   } else {
-    dprint("KC_RSFT = FALSE");
+    dprint("KC_RSFT = FALSE\n");
   }
 #endif
   switch (keycode) {  
