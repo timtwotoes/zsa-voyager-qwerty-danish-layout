@@ -145,6 +145,9 @@ bool rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+#ifdef CONSOLE_ENABLE
+  print("process_record_user");
+#endif
   switch (keycode) {
     case LT(2, KC_ESCAPE):
         if (record->tap.count > 0 && is_caps_word_on()) {
@@ -209,79 +212,35 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 bool caps_word_press_user(uint16_t keycode) {
 #ifdef CONSOLE_ENABLE
-  if (get_weak_mods() & MOD_BIT(KC_LSFT)) {
-    print("WEAK KC_LSFT = TRUE\n");
-  } else {
-    print("WEAK KC_LSFT = FALSE\n");
-  }
-  if (get_weak_mods() & MOD_BIT(KC_RSFT)) {
-    print("WEAK KC_RSFT = TRUE\n");
-  } else {
-    print("WEAK KC_RSFT = FALSE\n");
-  }
-  if (get_mods() & MOD_BIT(KC_LSFT)) {
-    print("KC_LSFT = TRUE\n");
-  } else {
-    print("KC_LSFT = FALSE\n");
-  }
-  if (get_mods() & MOD_BIT(KC_RSFT)) {
-    print("KC_RSFT = TRUE\n");
-  } else {
-    print("KC_RSFT = FALSE\n");
-  }
-  if (get_mods() & MOD_MASK_SHIFT) {
-    print("SHIFT = TRUE\n");
-  } else {
-    print("SHIFT = FALSE\n");
-  }
+  print("caps_word_press_user");
 #endif
-  if (get_mods() & MOD_MASK_SHIFT) {
-    switch (keycode) {  
-      // Keycodes that continue Caps Word
-      case KC_A ... KC_Z:
-      case DK_AE: // æ
-      case DK_OSTR: // ø
-      case DK_ARNG: // å
-      case DK_MINS: // This is minus and dash
+  const bool shift_pressed = get_mods() & MOD_MASK_SHIFT;
+
+  switch (keycode) {  
+    // Keycodes that continue Caps Word
+    case KC_A ... KC_Z:
+    case DK_AE: // æ
+    case DK_OSTR: // ø
+    case DK_ARNG: // å
+    case DK_MINS: // This is minus and dash
+      if (shift_pressed == false) {
         add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
-        return true;
+      }
+      return true;
 
-      case KC_1 ... KC_0:
-        return false;
+    case KC_1 ... KC_0:
+      return shift_pressed == false;
 
-      case KC_BSPC:
-      case KC_DEL:
-      case KC_RIGHT:
-      case KC_LEFT:
-      case KC_LSFT:
-      case KC_RSFT:
-        return true;
+    case KC_BSPC:
+    case KC_DEL:
+    case KC_RIGHT:
+    case KC_LEFT:
+    case KC_LSFT:
+    case KC_RSFT:
+      return true;
 
-      default:
-        return false;  // Deactivate Caps Word.
-    }
-  } else {
-    switch (keycode) {  
-      // Keycodes that continue Caps Word
-      case KC_A ... KC_Z:
-      case DK_AE: // æ
-      case DK_OSTR: // ø
-      case DK_ARNG: // å
-      case DK_MINS: // This is minus and dash
-        return true;
-
-      case KC_1 ... KC_0:
-      case KC_BSPC:
-      case KC_DEL:
-      case KC_RIGHT:
-      case KC_LEFT:
-      case KC_LSFT:
-      case KC_RSFT:
-        return true;
-
-      default:
-        return false;  // Deactivate Caps Word.
-    }
+    default:
+      return false;  // Deactivate Caps Word.
   }
 }
 
