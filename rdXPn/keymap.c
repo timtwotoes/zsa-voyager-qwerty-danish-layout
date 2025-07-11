@@ -217,7 +217,9 @@ bool caps_word_press_user(uint16_t keycode) {
     case DK_OSTR: // ø
     case DK_ARNG: // å
     case DK_MINS: // This is minus and dash
-      if (shift_is_held == false) {
+      if (shift_is_held) {
+        del_mods(MOD_MASK_SHIFT);
+      } else {
         add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to the next key.
       }
       return true;
