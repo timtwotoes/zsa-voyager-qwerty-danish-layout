@@ -1,7 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
 #include "i18n.h"
-#include "print.h"
 #define MOON_LED_LEVEL LED_LEVEL
 #ifndef ZSA_SAFE_RANGE
 #define ZSA_SAFE_RANGE SAFE_RANGE
@@ -211,24 +210,24 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 bool caps_word_press_user(uint16_t keycode) {
 #ifdef CONSOLE_ENABLE
   if (get_weak_mods() & MOD_BIT(KC_LSFT)) {
-    print("WEAK KC_LSFT = TRUE");
+    dprint("WEAK KC_LSFT = TRUE");
   } else {
-    print("WEAK KC_LSFT = FALSE");
+    dprint("WEAK KC_LSFT = FALSE");
   }
   if (get_weak_mods() & MOD_BIT(KC_RSFT)) {
-    print("WEAK KC_RSFT = TRUE");
+    dprint("WEAK KC_RSFT = TRUE");
   } else {
-    print("WEAK KC_RSFT = FALSE");
+    dprint("WEAK KC_RSFT = FALSE");
   }
   if (get_mods() & MOD_BIT(KC_LSFT)) {
-    print("KC_LSFT = TRUE");
+    dprint("KC_LSFT = TRUE");
   } else {
-    print("KC_LSFT = FALSE");
+    dprint("KC_LSFT = FALSE");
   }
   if (get_mods() & MOD_BIT(KC_RSFT)) {
-    print("KC_RSFT = TRUE");
+    dprint("KC_RSFT = TRUE");
   } else {
-    print("KC_RSFT = FALSE");
+    dprint("KC_RSFT = FALSE");
   }
 #endif
   switch (keycode) {  
