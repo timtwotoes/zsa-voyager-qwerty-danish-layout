@@ -208,6 +208,26 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
+  if (get_weak_mods() & MOD_BIT(KC_LSFT)) {
+    print("WEAK KC_LSFT = TRUE");
+  } else {
+    print("WEAK KC_LSFT = FALSE");
+  }
+  if (get_weak_mods() & MOD_BIT(KC_RSFT)) {
+    print("WEAK KC_RSFT = TRUE");
+  } else {
+    print("WEAK KC_RSFT = FALSE");
+  }
+  if (get_mods() & MOD_BIT(KC_LSFT)) {
+    print("KC_LSFT = TRUE");
+  } else {
+    print("KC_LSFT = FALSE");
+  }
+  if (get_mods() & MOD_BIT(KC_RSFT)) {
+    print("KC_RSFT = TRUE");
+  } else {
+    print("KC_RSFT = FALSE");
+  }
   switch (keycode) {  
     // Keycodes that continue Caps Word
     case KC_A ... KC_Z:
