@@ -208,7 +208,7 @@ const key_override_t **key_overrides = (const key_override_t *[]) {
 
 
 bool caps_word_press_user(uint16_t keycode) {
-  const bool shift_is_held = (get_weak_mods() & MOD_MASK_SHIFT);
+  const bool shift_is_held = (get_mods() & MOD_MASK_SHIFT);
 
   switch (keycode) {  
     // Keycodes that continue Caps Word
